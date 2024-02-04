@@ -2,7 +2,15 @@
   hosts: localhost
   connection: local
   vars:
-    jobs:
-      - roboshop-terraform
+    sp_jobs:
+      - roboshop-terraform  
+    mp_jobs:
+      - cart
+      - catalogue
+      - user
+      - shipping
+      - payment
+      - frontend
+     
   roles:
     - jenkins-jobs
