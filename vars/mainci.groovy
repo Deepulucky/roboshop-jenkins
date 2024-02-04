@@ -48,14 +48,15 @@ def call() {
 
    if(env.TAG_NAME ==~ ".*") {
      stage('Publish a Artifact') {
-       if (env.cibuild == "java") {
-           sh 'mv target/${component}-1.0.jar ${component}.jar'
-           sh 'rm -rf pom.xml src target'
-         }
+    //    if (env.cibuild == "java") {
+    //        sh 'mv target/${component}-1.0.jar ${component}.jar'
+    //        sh 'rm -rf pom.xml src target'
+    //      }
+       //sh 'rm -f Jenkinsfile'
        sh 'rm -f Jenkinsfile'
        sh 'echo ${TAG_NAME} >VERSION'
-       sh 'zip -r ${component}-${TA G_NAME}.zip *'
-       sh 'curl -v -u admin:admin123 --upload-file ${component}-${TAG_NAME}.zip http://172.31.95.9:8081/repository/${component}/${component}-${TAG_NAME}.zip'
+       sh 'zip -r ${component}-${TAG_NAME}.zip *'
+       sh 'curl -v -u admin:admin123 --upload-file ${component}-${TAG_NAME}.zip http://172.31.7.33:8081/repository/${component}/${component}-${TAG_NAME}.zip'
      }
    }
 
