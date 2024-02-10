@@ -10,7 +10,7 @@ def call() {
       } else {
         env.gitbrname = "${env.BRANCH_NAME}"
       }
-      checkout scm: [$class: 'GitSCM', userRemoteConfigs: [[url: "https://github.com/raghudevopsb73/${env.component}"]], branches: [[name: gitbrname]]], poll: false
+      checkout scm: [$class: 'GitSCM', userRemoteConfigs: [[url: "https://github.com/Deepulucky/${env.component}"]], branches: [[name: gitbrname]]], poll: false
 
     }
 
@@ -48,11 +48,11 @@ def call() {
 
    if(env.TAG_NAME ==~ ".*") {
      stage('Publish a Artifact') {
-    //    if (env.cibuild == "java") {
-    //        sh 'mv target/${component}-1.0.jar ${component}.jar'
-    //        sh 'rm -rf pom.xml src target'
-    //      }
-       //sh 'rm -f Jenkinsfile'
+       if (env.cibuild == "java") {
+           sh 'mv target/${component}-1.0.jar ${component}.jar'
+           sh 'rm -rf pom.xml src target'
+         }
+       sh 'rm -f Jenkinsfile'
        sh 'rm -f Jenkinsfile'
        sh 'echo ${TAG_NAME} >VERSION'
        sh 'zip -r ${component}-${TAG_NAME}.zip *'
